@@ -1,0 +1,52 @@
+@import "master";
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  & tr:not(:last-child) {
+    td {
+      border-bottom: 1px solid $lightGray;
+    }
+  }
+
+  th, td {
+    padding: 1em;
+  }
+
+  th {
+    font: $fontBold;
+    color: $primaryColor;
+    border-bottom: 2px solid $primaryColorBlurred;
+    &:not(.number):not(.date) {
+      text-align: left;
+    }
+  }
+
+  td {
+    &.number {
+      @extend %nowrap;
+      text-align: right;
+      color: $primaryColor;
+      font-weight: 400;
+    }
+
+    a {
+      color: $primaryColor;
+      font-weight: normal;
+      text-decoration: none;
+      border: 1px solid transparent;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    .fa-star {
+      color: $primaryColor;
+    }
+  }
+
+  .nobreak {
+    @extend %nowrap;
+  }
+}

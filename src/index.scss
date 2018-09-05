@@ -1,0 +1,49 @@
+@import "master";
+
+body {
+  font: $fontLight;
+  color: $black;
+  background-color: $tintedWhite;
+  padding-bottom: 6em;
+  padding-top: 2em;
+}
+
+.loading {
+  height: 84em;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    border-radius: $borderRadius;
+    background-color: $white;
+    opacity: 0.9;
+  }
+
+  &::after {
+    content: "";
+    border: 10px solid white;
+    border-top-color: $primaryColor;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    right: 0;
+    left: 0;
+    margin-right: auto;
+    margin-left: auto;
+    top: calc((100vh/2) - 35px);
+    box-shadow: 0px 0px 8px $shadowPrimary;
+    @include animation(spin, 1s, linear, infinite);
+  }
+}
+
+.container {
+  background-color: $white;
+  @extend %contentWidth;
+  @extend %centerBlock;
+}

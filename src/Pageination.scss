@@ -1,0 +1,94 @@
+@import "master";
+
+.pageination-container {
+  position: relative;
+}
+
+.table-container {
+  padding: 1em 2em;
+  @extend %shadowBox;
+}
+
+.page-nav-container {
+  position: fixed;
+  bottom: 0;
+  @extend %contentWidth;
+  padding: 1em 0;
+
+  &::after {
+    content: "";
+    background-color: $white;
+    filter: blur(0.5em);
+    opacity: 0.9;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+  }
+  .button-container {
+    width: 32em;
+    @extend %centerAll;
+    z-index: 100;
+    position: relative;
+    font-size: 1.2em;
+
+    button {
+      @include user-select(none);
+      font: $fontRegular;
+      background-color: $white;
+      border: none;
+      padding: 1em;
+      width: 3.7em;
+      cursor: pointer;
+
+      &:not(.active) {
+        color: $primaryColor;
+
+        &:not(:disabled) {
+          transition: background-color 200ms ease;
+
+          &:hover {
+            background-color: $lightGray;
+          }
+        }
+      }
+
+      &.arrow-button {
+        @extend %shadowBox;
+      }
+
+      &:disabled {
+        color: $primaryColorBlurred;
+        cursor: initial;
+      }
+    }
+
+    .index-buttons {
+      display: inline-block;
+      margin: 0 1em;
+      @extend %shadowBox;
+
+      button {
+        margin: 0;
+      }
+
+      :nth-child(1) {
+        border-top-left-radius: $borderRadius;
+        border-bottom-left-radius: $borderRadius;
+      }
+      :nth-last-child(1) {
+        border-top-right-radius: $borderRadius;
+        border-bottom-right-radius: $borderRadius;
+      }
+
+      .active {
+        background-color: $primaryColor;
+        color: $white;
+      }
+    }
+  }
+}
+
+.table-container.loading + .page-nav-container {
+  display: none;
+}

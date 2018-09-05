@@ -1,0 +1,78 @@
+//Variables
+$fontLight: 300 1em 'Open Sans', sans-serif;
+$fontRegular: 400 1em 'Open Sans', sans-serif;
+$fontBold: 600 1em 'Open Sans', sans-serif;
+
+$primaryColor: #009681;
+$primaryColorBlurred: #cfebe7;
+$shadowPrimary: #354a5d;
+$black: #262626;
+$lightGray: #e4e4e4;
+$shadowGray: #8c8c8c;
+$tintedWhite: #FEFEFE;
+$white: white;
+
+$contentWidth: 65em;
+$borderRadius: 4px;
+
+//Super classes
+%contentWidth {
+  width: $contentWidth;
+  max-width: 100%;
+}
+
+%centerBlock {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+%centerAll {
+  @extend %centerBlock;
+  text-align: center;
+}
+
+%shadowBox {
+  box-shadow: 0px 3px 13px $shadowGray;
+  border-radius: $borderRadius;
+}
+
+%nowrap {
+  white-space: nowrap;
+}
+
+//Mixins
+@mixin user-select($val) {
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+@mixin transition($args...) {
+  -o-transition: width 2s;
+  -moz-transition: width 2s;
+  -webkit-transition: width 2s;
+  transition: width 2s;
+}
+
+@mixin animation($name, $duration, $timingFunction, $iterationCount) {
+  -ms-animation: $name $duration $timingFunction $iterationCount;
+	-o-animation: $name $duration $timingFunction $iterationCount;
+  -moz-animation: $name $duration $timingFunction $iterationCount;
+  -webkit-animation: $name $duration $timingFunction $iterationCount;
+  animation: $name $duration $timingFunction $iterationCount;
+}
+
+@mixin transform($functions...) {
+  -ms-transform: $functions;
+  -o-transform: $functions;
+  -moz-transform: $functions;
+  -webkit-transform: $functions;
+  transform: $functions;
+}
+
+//Animations
+@keyframes spin {
+    0% { @include transform(rotate(0deg)); }
+    100% { @include transform(rotate(360deg)); }
+}

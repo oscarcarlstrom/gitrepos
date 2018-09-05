@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 import './Table.min.css';
 
 class Table extends Component {
@@ -22,7 +23,7 @@ class Table extends Component {
             { item.description }
           </td>
           <td className="nobreak">
-            { item.created_at }
+            { moment(item.created_at).format("YYYY-MM-DD") }
           </td>
           <td className="number">
             { item.stargazers_count } <i className="fas fa-star" aria-hidden="true"></i>

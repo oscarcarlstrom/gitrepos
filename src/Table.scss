@@ -21,6 +21,7 @@ table {
     &:not(.number):not(.date) {
       text-align: left;
     }
+    cursor: pointer;
   }
 
   td {

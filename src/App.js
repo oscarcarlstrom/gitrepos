@@ -26,19 +26,23 @@ class App extends Component {
     const columns = [
       {
         text: "Name",
-        className: ""
+        className: "",
+        dataName: "name"
       },
       {
         text: "Description",
-        className: ""
+        className: "",
+        dataName: "description"
       },
       {
         text: "Created",
-        className: "date"
+        className: "date",
+        dataName: "created_at"
       },
       {
         text: "Stars",
-        className: "number"
+        className: "number",
+        dataName: "stargazers_count"
       },
     ] //Defines the table columns
 

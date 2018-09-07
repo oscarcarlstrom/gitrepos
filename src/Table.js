@@ -6,7 +6,7 @@ class Table extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      columnDataName: this.props.headers.slice(-1)[0].dataName,
+      columnDataName: this.props.columns.slice(-1)[0].dataName,
       ascending: false,
     }
   }
@@ -20,14 +20,14 @@ class Table extends Component {
   }
 
   render() {
-    const tableHeaders = this.props.headers.map((header, index) => {
+    const tableHeaders = this.props.columns.map((column, index) => {
       return(
-          <th key={index} className={header.className} onClick={ event => this.sortColumn(header.dataName) }>{header.text}</th>
+          <th key={index} className={column.headerClassName} onClick={ event => this.sortColumn(column.dataName) }>{column.name}</th>
       );
     });
 
     //TODO
-    /*const tableData = this.props.items.sort((a, b) => {
+    const tableData = this.props.items.sort((a, b) => {
       const c = this.state.ascending ? -1 : 1;
       if (a[this.state.columnDataName].toString().toLowerCase() < b[this.state.columnDataName].toString().toLowerCase()) {
         return c;
@@ -37,23 +37,53 @@ class Table extends Component {
       }
       return 0;
     })
-    .map((item, index) => {
+    .map((item, i) => {
       return(
-          <tr key={index}>
-          {
-            this.props.headers.map((header, index) => {
-              return(
-                <td>
-                  {item[this.props.headers.dataName]}
-                </td>
-            );
-          }
-        </tr>
+          <tr key={i}>
+            {
+              this.props.columns.map((column, j) => {
+                let cellData;
+                if (column.headerClassName && column.headerClassName.includes("date")) {
+                  cellData = moment(item.created_at).format("YYYY-MM-DD");
+                }
+                else if (column.headerClassName && column.headerClassName.includes("number")) {
+                  //TODO: format number thousands
+                  cellData = item[column.dataName];
+                }
+                else {
+                  cellData = item[column.dataName];
+                }
+
+                if (column.dataHref) {
+                  return(
+                    <td key={`${i}-${j}`} className={column.rowCellClassName}>
+                      <a href={column.dataHref}>
+                        {cellData}
+                        {column.iconClassName &&
+                          <i className={column.iconClassName} aria-hidden="true"></i>
+                        }
+                      </a>
+                    </td>
+                  );
+                }
+                else {
+                  return(
+                    <td key={`${i}-${j}`} className={column.rowCellClassName}>
+                      {cellData}
+                      {column.iconClassName &&
+                        <i className={column.iconClassName} aria-hidden="true"></i>
+                      }
+                    </td>
+                  );
+                }
+              })
+            }
+          </tr>
       );
-    });*/
+    });
 
 
-    const tableData = this.props.items.sort((a, b) => {
+    /*const tableData = this.props.items.sort((a, b) => {
       const c = this.state.ascending ? -1 : 1;
       if (a[this.state.columnDataName].toString().toLowerCase() < b[this.state.columnDataName].toString().toLowerCase()) {
         return c;
@@ -83,6 +113,7 @@ class Table extends Component {
         </tr>
       );
     });
+    */
 
     return(
       <table>

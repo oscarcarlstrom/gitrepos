@@ -65,7 +65,7 @@ class Pageination extends Component {
       <div className="pageination-container">
 
         <div className={this.props.isLoading ? "table-container loading" : "table-container"}>
-          <Table headers={this.props.columns} items={this.getDisplayedItems(this.state.currentPageIndex)}/>
+          <Table columns={this.props.columns} items={this.getDisplayedItems(this.state.currentPageIndex)}/>
         </div>
 
         <div className="page-nav-container">

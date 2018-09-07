@@ -23,28 +23,34 @@ class App extends Component {
 
   render() {
     const PAGE_VIEW_SIZE = 20; //Defines how many repos to display per page
+
+    //Defines the table columns
     const columns = [
       {
-        text: "Name",
-        className: "",
-        dataName: "name"
+        name: "Name",
+        dataName: "name",
+        rowCellClassName: "nobreak",
+        iconClassName: "fa fa-external-link-alt",
+        dataHref: "html_url"
       },
       {
-        text: "Description",
-        className: "",
-        dataName: "description"
+        name: "Description",
+        dataName: "description",
       },
       {
-        text: "Created",
-        className: "date",
-        dataName: "created_at"
+        name: "Created",
+        headerClassName: "date",
+        dataName: "created_at",
+        rowCellClassName: "nobreak"
       },
       {
-        text: "Stars",
-        className: "number",
-        dataName: "stargazers_count"
+        name: "Stars",
+        headerClassName: "number",
+        dataName: "stargazers_count",
+        rowCellClassName: "number",
+        iconClassName: "fas fa-star",
       },
-    ] //Defines the table columns
+    ]
 
     return (
       <div className="App container">

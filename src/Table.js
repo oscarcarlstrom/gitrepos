@@ -6,14 +6,14 @@ class Table extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      columnDataName: this.props.columns.slice(-1)[0].dataName,
+      sortColumnName: this.props.columns.slice(-1)[0].dataName,
       ascending: false,
     }
   }
 
   sortColumn(column) {
     this.setState({
-      columnDataName: column,
+      sortColumnName: column,
       ascending: !this.state.ascending
     });
   }
@@ -41,7 +41,7 @@ class Table extends Component {
           columns={this.props.columns}
           items={this.props.items}
           ascending={this.state.ascending}
-          sortColumn={this.state.columnDataName}
+          sortColumn={this.state.sortColumnName}
         />
       </table>
     );

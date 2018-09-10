@@ -2,13 +2,16 @@ import React, {Component} from 'react';
 
 class TableDataCell extends Component {
   render() {
+    const icon = <i className={this.props.iconClassName} aria-hidden="true"></i>;
+
+    console.log(this.props.data.html_url);
     if (this.props.dataHref) {
       return(
         <td className={this.props.className}>
-          <a href={this.props.dataHref}>
+          <a href={this.props.dataHref} target="_blank">
             {this.props.data}
             {this.props.iconClassName &&
-              <i className={this.props.iconClassName} aria-hidden="true"></i>
+              icon
             }
           </a>
         </td>
@@ -19,7 +22,7 @@ class TableDataCell extends Component {
         <td className={this.props.className}>
           {this.props.data}
           {this.props.iconClassName &&
-            <i className={this.props.iconClassName} aria-hidden="true"></i>
+            icon
           }
         </td>
       );

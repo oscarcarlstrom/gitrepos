@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import {compareByProperty} from './util';
+import {compareByProperty} from '../util';
 import TableDataCell from './TableDataCell';
 
 class TableBody extends Component {
@@ -22,11 +22,11 @@ class TableBody extends Component {
                 else {
                   cellData = item[column.dataName];
                 }
-
+                let href = item[column.dataHref];
                 return(
                   <TableDataCell
                     key={`${i}-${j}`}
-                    dataHref={column.dataHref}
+                    dataHref={href}
                     className={column.rowCellClassName}
                     data={cellData}
                     iconClassName={column.iconClassName}

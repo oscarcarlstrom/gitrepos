@@ -7,6 +7,7 @@ class App extends Component {
     super(props);
     this.state = {
       repos: [],
+      filter: "",
       isLoading: true
     }
   }
@@ -21,6 +22,12 @@ class App extends Component {
         }));
   }
 
+  setFilter(f) {
+    this.setState({
+      filter: f.toLowerCase()
+    });
+  }
+
   render() {
     const PAGE_VIEW_SIZE = 20; //Defines how many repos to display per page
 
@@ -31,7 +38,7 @@ class App extends Component {
         dataName: "name",
         rowCellClassName: "nobreak",
         iconClassName: "fa fa-external-link-alt",
-        dataHref: "html_url"
+        hrefProperty: "html_url"
       },
       {
         name: "Description",
@@ -52,10 +59,17 @@ class App extends Component {
       },
     ]
 
+    const filteredRepos = this.state.filter.length === 0 ? this.state.repos
+                          : this.state.repos.filter(
+                            r => Object.values(r)
+                            .some(v => v != null && v.toString().toLowerCase().includes(this.state.filter))
+                          );
+
     return (
       <div className="App container">
         <h1>Some of the most popular JavaScript repos on github</h1>
-        <Pageination items={this.state.repos} isLoading={this.state.isLoading} columns={columns} pageViewSize={PAGE_VIEW_SIZE}/>
+        <input type="text" placeholder="filter" onInput={event => this.setFilter(event.target.value)}/>
+        <Pageination items={filteredRepos} isLoading={this.state.isLoading} columns={columns} pageViewSize={PAGE_VIEW_SIZE}/>
       </div>
     );
   }

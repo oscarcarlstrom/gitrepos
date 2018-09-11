@@ -5,10 +5,10 @@ class TableDataCell extends Component {
     const icon = <i className={this.props.iconClassName} aria-hidden="true"></i>;
 
     console.log(this.props.data.html_url);
-    if (this.props.dataHref) {
+    if (this.props.href) {
       return(
         <td className={this.props.className}>
-          <a href={this.props.dataHref} target="_blank">
+          <a href={this.props.href} target="_blank">
             {this.props.data}
             {this.props.iconClassName &&
               icon

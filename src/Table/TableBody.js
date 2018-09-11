@@ -22,11 +22,11 @@ class TableBody extends Component {
                 else {
                   cellData = item[column.dataName];
                 }
-                let href = item[column.dataHref];
+                let href = item[column.hrefProperty];
                 return(
                   <TableDataCell
                     key={`${i}-${j}`}
-                    dataHref={href}
+                    href={href}
                     className={column.rowCellClassName}
                     data={cellData}
                     iconClassName={column.iconClassName}

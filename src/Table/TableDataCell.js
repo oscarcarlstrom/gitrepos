@@ -4,7 +4,6 @@ class TableDataCell extends Component {
   render() {
     const icon = <i className={this.props.iconClassName} aria-hidden="true"></i>;
 
-    console.log(this.props.data.html_url);
     if (this.props.href) {
       return(
         <td className={this.props.className}>

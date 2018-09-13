@@ -78,7 +78,6 @@ class App extends Component {
                           })
                           .filter(r => r != null);
 
-
     return (
       <div className="App container">
         <div className="top-container">

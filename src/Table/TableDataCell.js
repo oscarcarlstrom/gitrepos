@@ -14,6 +14,9 @@ class TableDataCell extends Component {
                     </mark>
                     {data.substring(this.props.highlightEnd)}
                   </span>;
+      console.log(`highlight is: ${this.props.highlight}`);
+      console.log(`highlightStart: ${this.props.highlightStart}`);
+      console.log(`highlightEnd: ${this.props.highlightEnd}`);
     }
 
     if (this.props.href) {

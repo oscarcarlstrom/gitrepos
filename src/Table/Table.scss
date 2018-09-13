@@ -1,4 +1,4 @@
-@import "master";
+@import "../master";
 
 table {
   width: 100%;
@@ -47,6 +47,10 @@ table {
     }
     .fas, .fa {
       margin-left: 0.4em;
+    }
+
+    mark {
+      background-color: $highlightMarker;
     }
   }
 

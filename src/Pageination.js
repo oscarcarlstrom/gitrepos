@@ -41,7 +41,7 @@ class Pageination extends Component {
   }
 
   numberOfPages() {
-    return this.props.items.length / this.props.pageViewSize;
+    return Math.ceil(this.props.items.length / this.props.pageViewSize);
   }
 
   buttonIsActive(i) {

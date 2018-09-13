@@ -60,10 +60,24 @@ class App extends Component {
     ]
 
     const filteredRepos = this.state.filter.length === 0 ? this.state.repos
-                          : this.state.repos.filter(
-                            r => Object.values(r)
-                            .some(v => v != null && v.toString().toLowerCase().includes(this.state.filter))
-                          );
+                          : this.state.repos.map((repo, index) => {
+
+                            for(let [key, value] of Object.entries(repo)) {
+                              if (columns.filter(c => c.dataName === key).length > 0) {
+                                const val = value ? value.toString().toLowerCase() : "";
+                                if (val.length > 0 && val.includes(this.state.filter)) {
+                                  repo.highlight = key;
+                                  repo.highlightStart = val.indexOf(this.state.filter);
+                                  repo.highlightEnd = repo.highlightStart + this.state.filter.length;
+                                  return repo;
+                                }
+                              }
+
+                            }
+                            return null;
+                          })
+                          .filter(r => r != null);
+
 
     return (
       <div className="App container">

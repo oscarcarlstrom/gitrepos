@@ -30,6 +30,9 @@ class TableBody extends Component {
                     className={column.rowCellClassName}
                     data={cellData}
                     iconClassName={column.iconClassName}
+                    highlight={item.highlight === column.dataName}
+                    highlightStart={item.highlightStart}
+                    highlightEnd={item.highlightEnd}
                   />
                 );
               })

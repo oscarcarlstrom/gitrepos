@@ -68,19 +68,22 @@ class Pageination extends Component {
           <Table columns={this.props.columns} items={this.getDisplayedItems(this.state.currentPageIndex)}/>
         </div>
 
-        <div className="page-nav-container">
-          <div className="button-container">
-            <button className="arrow-button" disabled={this.isFirstPage()} onClick={e => this.prevPage()} aria-label="Previous">
-              <i className="fas fa-chevron-left" aria-hidden="true"></i>
-            </button>
-            <div className="index-buttons">
-              {pageInationButtons}
+        {pageInationButtons.length > 1 &&
+          <div className="page-nav-container">
+            <div className="button-container">
+              <button className="arrow-button" disabled={this.isFirstPage()} onClick={e => this.prevPage()} aria-label="Previous">
+                <i className="fas fa-chevron-left" aria-hidden="true"></i>
+              </button>
+              <div className="index-buttons">
+                  {pageInationButtons}
+              </div>
+              <button className="arrow-button" disabled={this.isLastPage()} onClick={e => this.nextPage()} aria-label="Next">
+                <i className="fas fa-chevron-right" aria-hidden="true"></i>
+              </button>
             </div>
-            <button className="arrow-button" disabled={this.isLastPage()} onClick={e => this.nextPage()} aria-label="Next">
-              <i className="fas fa-chevron-right" aria-hidden="true"></i>
-            </button>
           </div>
-        </div>
+        }
+
       </div>
     );
   }

@@ -6,4 +6,30 @@
     font-weight: 500;
     color: $primaryColor;
   }
+
+  .top-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .input-container {
+      position: relative;
+
+      $padding: 0.8rem;
+
+      input {
+        @extend %shadowBox;
+        padding: $padding $padding $padding calc(#{$padding} * 3);
+        border: none;
+        font-family: inherit;
+      }
+
+      .fas {
+        position: absolute;
+        color: $primaryColor;
+        left: $padding;
+        top: $padding;
+      }
+    }
+  }
 }

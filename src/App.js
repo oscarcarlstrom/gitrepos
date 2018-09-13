@@ -67,8 +67,13 @@ class App extends Component {
 
     return (
       <div className="App container">
-        <h1>Some of the most popular JavaScript repos on github</h1>
-        <input type="text" placeholder="filter" onInput={event => this.setFilter(event.target.value)}/>
+        <div className="top-container">
+          <h1>Some of the most popular JavaScript repos on github</h1>
+          <div className="input-container">
+            <i className="fas fa-search" aria-hidden="true"></i>
+            <input type="text" placeholder="Search ..." onInput={event => this.setFilter(event.target.value)}/>
+          </div>
+        </div>
         <Pageination items={filteredRepos} isLoading={this.state.isLoading} columns={columns} pageViewSize={PAGE_VIEW_SIZE}/>
       </div>
     );

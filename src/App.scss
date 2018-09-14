@@ -15,20 +15,21 @@
     .input-container {
       position: relative;
 
-      $padding: 0.8rem;
+      $fontSize: 0.8rem;
 
       input {
         @extend %shadowBox;
-        padding: $padding $padding $padding calc(#{$padding} * 3);
         border: none;
         font-family: inherit;
+        font-size: $fontSize;
+        padding: $fontSize $fontSize $fontSize calc(#{$fontSize} * 3);
       }
 
       .fas {
         position: absolute;
         color: $primaryColor;
-        left: $padding;
-        top: $padding;
+        left: $fontSize;
+        top: calc(50% - 0.5em);
       }
     }
   }

@@ -62,25 +62,24 @@ class App extends Component {
     const filteredRepos = this.state.filter.length === 0
                           ? this.state.repos.map((repo, index) => {
                               delete repo.highlight;
-                              delete repo.highlightStart;
-                              delete repo.highlightEnd;
                               return repo;
                             })
                           : this.state.repos.map((repo, index) => {
-
+                            repo.highlight = [];
+                            const filter = this.state.filter;
                             for(let [key, value] of Object.entries(repo)) {
                               if (columns.filter(c => c.dataName === key).length > 0) {
                                 const val = value ? value.toString().toLowerCase() : "";
-                                if (val.length > 0 && val.includes(this.state.filter)) {
-                                  repo.highlight = key;
-                                  repo.highlightStart = val.indexOf(this.state.filter);
-                                  repo.highlightEnd = repo.highlightStart + this.state.filter.length;
-                                  return repo;
+                                if (val.length > 0 && val.includes(filter)) {
+                                  repo.highlight.push({
+                                    dataName : key,
+                                    start : val.indexOf(filter),
+                                    end : val.indexOf(filter) + filter.length
+                                  });
                                 }
                               }
-
                             }
-                            return null;
+                            return repo.highlight.length > 0 ? repo : null;
                           })
                           .filter(r => r != null);
 

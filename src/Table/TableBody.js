@@ -23,6 +23,8 @@ class TableBody extends Component {
                   cellData = item[column.dataName];
                 }
                 let href = item[column.hrefProperty];
+                let highlight = item.highlight ? item.highlight.find(x => x.dataName === column.dataName) : null;
+
                 return(
                   <TableDataCell
                     key={`${i}-${j}`}
@@ -30,9 +32,9 @@ class TableBody extends Component {
                     className={column.rowCellClassName}
                     data={cellData}
                     iconClassName={column.iconClassName}
-                    highlight={item.highlight === column.dataName}
-                    highlightStart={item.highlightStart}
-                    highlightEnd={item.highlightEnd}
+                    highlight={highlight}
+                    highlightStart={highlight ? highlight.start : 0}
+                    highlightEnd={highlight ? highlight.end : 0}
                   />
                 );
               })

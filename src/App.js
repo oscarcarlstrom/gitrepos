@@ -59,7 +59,13 @@ class App extends Component {
       },
     ]
 
-    const filteredRepos = this.state.filter.length === 0 ? this.state.repos
+    const filteredRepos = this.state.filter.length === 0
+                          ? this.state.repos.map((repo, index) => {
+                              delete repo.highlight;
+                              delete repo.highlightStart;
+                              delete repo.highlightEnd;
+                              return repo;
+                            })
                           : this.state.repos.map((repo, index) => {
 
                             for(let [key, value] of Object.entries(repo)) {
@@ -84,7 +90,7 @@ class App extends Component {
           <h1>Some of the most popular JavaScript repos on github</h1>
           <div className="input-container">
             <i className="fas fa-search" aria-hidden="true"></i>
-            <input type="text" placeholder="Search ..." onInput={event => this.setFilter(event.target.value)}/>
+            <input type="text" placeholder="Filter ..." onInput={event => this.setFilter(event.target.value)}/>
           </div>
         </div>
         <Pageination items={filteredRepos} isLoading={this.state.isLoading} columns={columns} pageViewSize={PAGE_VIEW_SIZE}/>

@@ -20,14 +20,20 @@ class Table extends Component {
 
   render() {
     const tableHeaders = this.props.columns.map((column, index) => {
-      return(
-          <th
-            key={index}
-            className={column.headerClassName}
-            onClick={ event => this.sortColumn(column.dataName) }>
-              {column.name}
-          </th>
-      );
+    const sortOrder = this.state.sortColumnName === column.dataName
+                            ? this.state.ascending
+                                ? <i aria-hidden="true" className="fas fa-sort-up"></i>
+                                : <i aria-hidden="true" className="fas fa-sort-down"></i>
+                            : "";
+    return(
+        <th
+          key={index}
+          className={column.headerClassName}
+          onClick={ event => this.sortColumn(column.dataName) }>
+            {column.name}
+            {sortOrder}
+        </th>
+    );
     });
 
     return(

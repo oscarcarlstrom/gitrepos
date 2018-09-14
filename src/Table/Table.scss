@@ -21,7 +21,21 @@ table {
     &:not(.number):not(.date) {
       text-align: left;
     }
+    
     cursor: pointer;
+    user-select: none;
+
+    .fas {
+      margin-left: 0.4em;
+
+      &.fa-sort-up {
+        vertical-align: -25%;
+      }
+
+      &.fa-sort-down {
+        vertical-align: 10%;
+      }
+    }
   }
 
   td {

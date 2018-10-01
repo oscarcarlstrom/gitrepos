@@ -2,10 +2,11 @@ import React, {Component} from 'react';
 
 class TableDataCell extends Component {
   render() {
-    const icon = <i className={this.props.iconClassName} aria-hidden="true"></i>;
+    const {className, iconClassName} = this.props;
+    const icon = <i className={iconClassName} aria-hidden="true"></i>;
 
     const data = this.props.data.toString();
-    let content = data
+    let content = data;
     if(this.props.highlight) {
       content = <span>
                   {data.substring(0, this.props.highlightStart)}
@@ -18,10 +19,10 @@ class TableDataCell extends Component {
 
     if (this.props.href) {
       return(
-        <td className={this.props.className}>
+        <td className={className}>
           <a href={this.props.href} target="_blank">
             {content}
-            {this.props.iconClassName &&
+            {iconClassName &&
               icon
             }
           </a>
@@ -30,9 +31,9 @@ class TableDataCell extends Component {
     }
     else {
       return(
-        <td className={this.props.className}>
+        <td className={className}>
           {content}
-          {this.props.iconClassName &&
+          {iconClassName &&
             icon
           }
         </td>
